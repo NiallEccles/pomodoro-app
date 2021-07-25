@@ -134,7 +134,6 @@
     background-color: transparent;
     border-radius: 2em;
     border: 2px solid #56cef2;
-    outline: none;
     cursor: pointer;
     font-size: 1.25em;
     padding: 0.45em 2em;
@@ -147,5 +146,9 @@
   .stop {
     border: 2px solid #ff3e00;
     color: #ff3e00;
+  }
+
+  .stop:hover {
+    background: #ff3e00;
   }
 </style>

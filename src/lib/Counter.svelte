@@ -6,7 +6,7 @@
 
   let controller = new AbortController();
   const timeOptions = [
-    1000 * 60 * 25, // 25 minutes
+    1000 * 10, // 25 minutes
     1000 * 60 * 5, // 5 minutes
     1000 * 60 * 15, // 15 minutes
   ];
@@ -43,10 +43,9 @@
     counterIsActive = !counterIsActive;
     console.log(counterIsActive);
     if (counterIsActive) {
-      animationInterval(1000, controller.signal, (time: number) => {
-        console.log("tick!", time);
+      window["globalTimeout"] = setInterval(()=>{
         if (currentTime === 0) {
-          controller.abort();
+          window.clearInterval(window["globalTimeout"]);
           setState();
           new Notification("Pomodoro App", { body: "Timer's up!" });
         } else {
@@ -54,9 +53,9 @@
           formattedTime = msToTime(currentTime);
           updateTitle();
         }
-      });
+      },1000);
     } else {
-      window.clearTimeout(window["globalTimeout"]);
+      window.clearInterval(window["globalTimeout"]);
     }
   }
 </script>

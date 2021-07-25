@@ -112,6 +112,11 @@
     color: #56cef2;
     cursor: pointer;
     padding: 0.75em 1em;
+    border-radius: 3em;
+    /* background: #37306B; */
+  }
+  li:nth-child(2){
+    margin: 0 0.5em;
   }
   li:hover {
     background: #56cef2;
@@ -150,5 +155,24 @@
 
   .stop:hover {
     background: #ff3e00;
+  }
+  @media only screen and (max-width: 400px) {
+    ol{
+      display: flex;
+      flex-direction: column;
+      width: 90%;
+      border-radius: 1em;
+      background: none;
+      box-shadow: none;
+    }
+    li{
+      width: 90%;
+      margin: 0.5em 0;
+      background: #17122d;
+      border-radius: 0.5em;
+    }
+    li:hover{
+      border-radius: 0.5em;
+    }
   }
 </style>

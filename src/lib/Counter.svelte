@@ -2,6 +2,8 @@
   import { animationInterval, msToTime } from "../scripts/counter-utils";
   import { handlePermission } from "../scripts/permissions";
 
+  $: title = "Pomodoro";
+
   let controller = new AbortController();
   const timeOptions = [
     1000 * 60 * 25, // 25 minutes
@@ -12,13 +14,20 @@
   let currentTime = initialTime;
   let formattedTime = msToTime(currentTime);
   let counterIsActive = false;
+  updateTitle();
 
   function setTime(index: number) {
     if (!counterIsActive) {
       initialTime = timeOptions[index];
       currentTime = initialTime;
       formattedTime = msToTime(currentTime);
+      updateTitle();
     }
+  }
+
+  function updateTitle() {
+    title = `Pomodoro | ${msToTime(currentTime)}`;
+    document.title = title;
   }
 
   function setState() {
@@ -43,6 +52,7 @@
         } else {
           currentTime = currentTime - 1000;
           formattedTime = msToTime(currentTime);
+          updateTitle();
         }
       });
     } else {
@@ -115,7 +125,7 @@
     border-radius: 3em;
     /* background: #37306B; */
   }
-  li:nth-child(2){
+  li:nth-child(2) {
     margin: 0 0.5em;
   }
   li:hover {
@@ -127,7 +137,7 @@
     color: #56cef2;
     background: none;
     border: none;
-    font-family: 'Open Sans', sans-serif;
+    font-family: "Open Sans", sans-serif;
   }
   li:hover button {
     color: #17122d;
@@ -144,7 +154,7 @@
     padding: 0.45em 2em;
     font-family: inherit;
   }
-  .toggle:hover{
+  .toggle:hover {
     color: #17122d;
     background: #56cef2;
   }
@@ -157,7 +167,7 @@
     background: #ff3e00;
   }
   @media only screen and (max-width: 400px) {
-    ol{
+    ol {
       display: flex;
       flex-direction: column;
       width: 90%;
@@ -165,13 +175,13 @@
       background: none;
       box-shadow: none;
     }
-    li{
+    li {
       width: 90%;
       margin: 0.5em 0;
       background: #17122d;
       border-radius: 0.5em;
     }
-    li:hover{
+    li:hover {
       border-radius: 0.5em;
     }
   }
